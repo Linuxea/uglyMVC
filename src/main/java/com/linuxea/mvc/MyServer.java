@@ -1,3 +1,5 @@
+package com.linuxea.mvc;
+
 import org.eclipse.jetty.server.Connector;
 import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.Server;
@@ -11,6 +13,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 /**
+ * server base on jetty
  * create by linuxea on 17-11-23
  **/
 public class MyServer {

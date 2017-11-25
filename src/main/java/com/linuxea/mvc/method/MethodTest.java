@@ -1,6 +1,6 @@
-package method;
+package com.linuxea.mvc.method;
 
-import data.ResponseData;
+import com.linuxea.mvc.data.ResponseData;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
