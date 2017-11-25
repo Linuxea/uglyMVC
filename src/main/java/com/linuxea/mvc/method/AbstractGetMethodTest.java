@@ -12,7 +12,7 @@ import java.io.IOException;
  * @date 2017-11-25
  */
 
-public class AbstractMethodTest extends AbstractGetAbstractMethod {
+public class AbstractGetMethodTest extends AbstractGetMethod {
 
     /**
      * test demo

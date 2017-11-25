@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
  * @date 2017-11-25
  */
 
-public abstract class AbstractGetAbstractMethod extends AbstractMethod<AbstractResponse> {
+public abstract class AbstractGetMethod extends AbstractMethod<AbstractResponse> {
 
     /**
      * validate method if get
