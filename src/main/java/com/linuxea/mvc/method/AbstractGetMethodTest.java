@@ -30,4 +30,5 @@ public class AbstractGetMethodTest extends AbstractGetMethod {
         }
         return null;
     }
+
 }

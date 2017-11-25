@@ -15,7 +15,6 @@ public abstract class AbstractMethod<T extends AbstractResponse> {
 
     /**
      * method type validate
-     *
      * @param httpServletRequest
      * @param httpServletResponse
      */
@@ -24,11 +23,21 @@ public abstract class AbstractMethod<T extends AbstractResponse> {
     /**
      * subclass service do
      * must override
-     *
      * @param httpServletRequest
      * @param httpServletResponse
      * @return
      */
     public abstract T doIt(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse);
+
+    /**
+     * method logic
+     *
+     * @param httpServletRequest
+     * @param httpServletResponse
+     */
+    public final void process(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
+        this.validateType(httpServletRequest, httpServletResponse);
+        this.doIt(httpServletRequest, httpServletResponse);
+    }
 
 }

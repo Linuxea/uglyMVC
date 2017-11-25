@@ -66,8 +66,7 @@ public class DispatcherServlet extends HttpServlet {
                     method = inst.newInstance();
                     MAP.put(inst, method);
                 }
-                method.validateType(httpServletRequest, httpServletResponse);
-                method.doIt(httpServletRequest, httpServletResponse);
+                method.process(httpServletRequest, httpServletResponse);
             } else {
                 httpServletResponse.getWriter().write("not this url mapping");
             }
