@@ -7,6 +7,8 @@ import org.eclipse.jetty.server.ServerConnector;
 import org.eclipse.jetty.server.handler.DefaultHandler;
 import org.eclipse.jetty.server.handler.HandlerCollection;
 import org.eclipse.jetty.servlet.ServletContextHandler;
+import org.eclipse.jetty.util.thread.ExecutorThreadPool;
+import org.eclipse.jetty.util.thread.ThreadPool;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -47,7 +49,9 @@ public class MyServer {
      * @throws Exception
      */
     public void start() throws Exception {
-        server = new Server();
+        // default thread pool settings
+        ThreadPool threadPool = new ExecutorThreadPool();
+        server = new Server(threadPool);
         ServerConnector connector = new ServerConnector(server);
         connector.setPort(8080);
         server.setConnectors(new Connector[]{connector});
