@@ -5,11 +5,18 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * response json
- * Created by Linuxea on 17-11-25.
+ * @author linuxea
+ * @date 2017-11-25
  */
 
-public class JSONData extends ResponseData {
+public class JsonData extends AbstractResponse {
 
+    /**
+     * process with json
+     *
+     * @param httpServletRequest
+     * @param httpServletResponse
+     */
     @Override
     public void process(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
 

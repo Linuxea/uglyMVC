@@ -2,12 +2,31 @@ package com.linuxea.mvc.constant;
 
 /**
  * http method constants
- * Created by Linuxea on 17-11-25.
+ * @author linuxea
+ * @date 2017-11-25
  */
 
 public enum MethodTypeEnum {
 
-    GET("get"), PUT("put"), POST("post"), DELETE("delete"), PATCH("patch");
+    /**
+     * get method
+     */
+    GET("get"),
+
+    /**
+     * put method
+     */
+    PUT("put"),
+
+    /**
+     * post method
+     */
+    POST("post"),
+
+    /**
+     * delete method
+     */
+    DELETE("delete");
 
     String aliasName;
 

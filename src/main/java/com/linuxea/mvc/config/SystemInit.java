@@ -4,10 +4,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Created by Linuxea on 17-11-25.
+ * @author linuxea
+ * @date 2017-11-25
  */
 
-public class SystemInit extends Project {
+public class SystemInit extends AbstractProject {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SystemInit.class);
 

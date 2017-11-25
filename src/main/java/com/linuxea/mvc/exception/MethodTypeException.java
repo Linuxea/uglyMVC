@@ -2,7 +2,8 @@ package com.linuxea.mvc.exception;
 
 /**
  * method type not match exception
- * Created by Linuxea on 17-11-25.
+ * @author linuxea
+ * @date 2017-11-25
  */
 
 public class MethodTypeException extends BaseException {

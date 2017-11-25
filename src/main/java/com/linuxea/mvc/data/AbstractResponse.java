@@ -5,11 +5,18 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * abstract class response data status
- * Created by Linuxea on 17-11-25.
+ * @author linuxea
+ * @date 2017-11-25
  */
 
-public abstract class ResponseData {
+public abstract class AbstractResponse {
 
+    /**
+     * process do
+     *
+     * @param httpServletRequest
+     * @param httpServletResponse
+     */
     public abstract void process(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse);
 
 }

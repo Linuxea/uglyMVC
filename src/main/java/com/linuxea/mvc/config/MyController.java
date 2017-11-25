@@ -1,18 +1,19 @@
 package com.linuxea.mvc.config;
 
-import com.linuxea.mvc.method.MethodTest;
+import com.linuxea.mvc.method.AbstractMethodTest;
 
 /**
- * Created by Linuxea on 17-11-25.
+ * @author linuxea
+ * @date 2017-11-25
  */
 
-public class MyController extends ControllerConfig {
+public class MyController extends AbstractControllerConfig {
 
     /**
      * url -> controller mapping
      */
     @Override
     public void connect() {
-        super.add("/hello", MethodTest.class);
+        super.add("/hello", AbstractMethodTest.class);
     }
 }

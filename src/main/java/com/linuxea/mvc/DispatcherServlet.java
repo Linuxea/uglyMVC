@@ -1,8 +1,8 @@
 package com.linuxea.mvc;
 
-import com.linuxea.mvc.config.ControllerConfig;
+import com.linuxea.mvc.config.AbstractControllerConfig;
 import com.linuxea.mvc.config.SystemInit;
-import com.linuxea.mvc.method.Method;
+import com.linuxea.mvc.method.AbstractMethod;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,36 +18,47 @@ import java.util.Map;
 
 /**
  * dispatcher servlet
- * create by linuxea on 17-11-23
+ * @author linuxea
+ * @date 2017-11-25
  **/
 public class DispatcherServlet extends HttpServlet {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(DispatcherServlet.class);
 
     /**
      * 用来缓存 method 对象的实例
      */
-    private static final Map<Class, Method> MAP = new HashMap<>();
+    private static final Map<Class, AbstractMethod> MAP = new HashMap<>();
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(DispatcherServlet.class);
     /**
      * 对象映射关系的获取
      */
-    private static final Map<String, Class<? extends Method>> controllerMappingMap = ControllerConfig.getMap();
+    private static final Map<String, Class<? extends AbstractMethod>> CONTROLLER_MAPPING_MAP = AbstractControllerConfig.getMap();
+
+    {
+        dispatcherInit();
+    }
 
     public DispatcherServlet() {
         // only init once
-        init();
         LOGGER.info("dispatcherServlet init successfully");
     }
 
+    /**
+     * service dispatcher center
+     *
+     * @param req
+     * @param res
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
         HttpServletRequest httpServletRequest = (HttpServletRequest) req;
         HttpServletResponse httpServletResponse = (HttpServletResponse) res;
         String uri = httpServletRequest.getRequestURI().toString();
-        Method method;
+        AbstractMethod method;
         try {
-            Class<? extends Method> inst = controllerMappingMap.get(uri);
+            Class<? extends AbstractMethod> inst = CONTROLLER_MAPPING_MAP.get(uri);
             if (null != inst) {
                 if (null != MAP.get(inst)) {
                     method = MAP.get(inst);
@@ -68,7 +79,10 @@ public class DispatcherServlet extends HttpServlet {
 
     }
 
-    public void init() {
+    /**
+     * some thing init
+     */
+    public void dispatcherInit() {
         new SystemInit().init();
     }
 

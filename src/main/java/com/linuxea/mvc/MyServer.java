@@ -14,7 +14,8 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * server base on jetty
- * create by linuxea on 17-11-23
+ * @author linuxea
+ * @date 2017-11-25
  **/
 public class MyServer {
 
