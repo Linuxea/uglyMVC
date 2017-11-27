@@ -1,9 +1,13 @@
 package com.linuxea.mvc.method;
 
-import com.linuxea.mvc.data.AbstractResponse;
+import com.linuxea.mvc.data.JsonData;
+import com.linuxea.mvc.data.StringData;
+import com.linuxea.mvc.data.XmlData;
+import com.linuxea.mvc.exception.NotSupportResponseDataFormaException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.lang.reflect.AnnotatedType;
 
 /**
  * abstract method
@@ -11,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
  * @date 2017-11-25
  */
 
-public abstract class AbstractMethod<T extends AbstractResponse> {
+public abstract class AbstractMethod<T> {
 
     /**
      * method type validate
@@ -37,7 +41,19 @@ public abstract class AbstractMethod<T extends AbstractResponse> {
      */
     public final void process(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
         this.validateType(httpServletRequest, httpServletResponse);
-        this.doIt(httpServletRequest, httpServletResponse);
+        T t = this.doIt(httpServletRequest, httpServletResponse);
+        AnnotatedType[] annotatedInterfaces = this.getClass().getAnnotatedInterfaces();
+        for (AnnotatedType annotatedInterface : annotatedInterfaces) {
+            if (annotatedInterface.isAnnotationPresent(JsonData.class)) {
+
+            } else if (annotatedInterface.isAnnotationPresent(XmlData.class)) {
+
+            } else if (annotatedInterface.isAnnotationPresent(StringData.class)) {
+
+            } else {
+                throw new NotSupportResponseDataFormaException("not support response data format");
+            }
+        }
     }
 
 }

@@ -1,7 +1,6 @@
 package com.linuxea.mvc.config;
 
 import com.linuxea.mvc.method.AbstractGetMethodTest;
-import com.linuxea.mvc.method.PutMethodTest;
 
 /**
  * @author linuxea
@@ -16,6 +15,5 @@ public class MyController extends AbstractControllerConfig {
     @Override
     public void connect() {
         super.add("/hello", AbstractGetMethodTest.class);
-        super.add("/shit", PutMethodTest.class);
     }
 }

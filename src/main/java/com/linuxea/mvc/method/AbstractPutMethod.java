@@ -1,7 +1,6 @@
 package com.linuxea.mvc.method;
 
 import com.linuxea.mvc.constant.MethodTypeEnum;
-import com.linuxea.mvc.data.AbstractResponse;
 import com.linuxea.mvc.exception.MethodTypeException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
  * @date 2017-11-25
  */
 
-public abstract class AbstractPutMethod extends AbstractMethod<AbstractResponse> {
+public abstract class AbstractPutMethod extends AbstractMethod<Object> {
 
     /**
      * validate method if put

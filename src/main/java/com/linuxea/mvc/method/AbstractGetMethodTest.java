@@ -1,6 +1,6 @@
 package com.linuxea.mvc.method;
 
-import com.linuxea.mvc.data.AbstractResponse;
+import com.linuxea.mvc.data.JsonData;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,6 +12,7 @@ import java.io.IOException;
  * @date 2017-11-25
  */
 
+@JsonData
 public class AbstractGetMethodTest extends AbstractGetMethod {
 
     /**
@@ -22,7 +23,7 @@ public class AbstractGetMethodTest extends AbstractGetMethod {
      * @return
      */
     @Override
-    public AbstractResponse doIt(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
+    public Object doIt(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
         try {
             httpServletResponse.getWriter().write("this is very interesting");
         } catch (IOException e) {
