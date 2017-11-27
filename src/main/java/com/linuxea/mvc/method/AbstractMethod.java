@@ -3,11 +3,10 @@ package com.linuxea.mvc.method;
 import com.linuxea.mvc.data.JsonData;
 import com.linuxea.mvc.data.StringData;
 import com.linuxea.mvc.data.XmlData;
-import com.linuxea.mvc.exception.NotSupportResponseDataFormaException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.lang.reflect.AnnotatedType;
+import java.lang.annotation.Annotation;
 
 /**
  * abstract method
@@ -42,16 +41,24 @@ public abstract class AbstractMethod<T> {
     public final void process(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
         this.validateType(httpServletRequest, httpServletResponse);
         T t = this.doIt(httpServletRequest, httpServletResponse);
-        AnnotatedType[] annotatedInterfaces = this.getClass().getAnnotatedInterfaces();
-        for (AnnotatedType annotatedInterface : annotatedInterfaces) {
-            if (annotatedInterface.isAnnotationPresent(JsonData.class)) {
+        System.out.println(this);
+        // "this" is the abstract method instance
+        Annotation[] annotations = this.getClass().getAnnotations();
+        boolean skip = true;
+        for (int i = 0; i < annotations.length; i++) {
+            Annotation annotation = annotations[i];
+            if (annotation.annotationType() == JsonData.class) {
 
-            } else if (annotatedInterface.isAnnotationPresent(XmlData.class)) {
+            } else if (annotation.annotationType() == StringData.class) {
 
-            } else if (annotatedInterface.isAnnotationPresent(StringData.class)) {
+            } else if (annotation.annotationType() == XmlData.class) {
 
             } else {
-                throw new NotSupportResponseDataFormaException("not support response data format");
+                skip = false;
+            }
+
+            if (skip) {
+                break;
             }
         }
     }
