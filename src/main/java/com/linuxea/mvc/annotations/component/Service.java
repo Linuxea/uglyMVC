@@ -7,7 +7,6 @@ import java.lang.annotation.Target;
 
 /**
  * service component
- *
  * @author linuxea
  * @date 2017-11-28
  */

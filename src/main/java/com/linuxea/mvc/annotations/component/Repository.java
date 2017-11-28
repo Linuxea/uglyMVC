@@ -7,7 +7,6 @@ import java.lang.annotation.Target;
 
 /**
  * repository component
- *
  * @author linuxea
  * @date 2017-11-28
  */
