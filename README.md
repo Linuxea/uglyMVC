@@ -1,3 +1,3 @@
 # introduction
 ## a ugly mvc framework base on servlet
-## function programmer with multiply threads, singleton object
+## function programming with multiply threads, singleton object

@@ -11,6 +11,6 @@ import com.linuxea.mvc.method.AbstractGetMethod;
 public class ImageDataTest extends AbstractGetMethod {
     @Override
     public Object doIt() {
-        return "/home/linuxea/Desktop/ok.jpg";
+        return "/home/linuxea/Desktop/cat.jpg";
     }
 }
