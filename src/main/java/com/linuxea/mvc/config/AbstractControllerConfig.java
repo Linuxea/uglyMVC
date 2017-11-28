@@ -10,7 +10,6 @@ import java.util.Map;
  * @author linuxea
  * @date 2017-11-25
  */
-
 public abstract class AbstractControllerConfig {
 
     private static Map<String, Class<? extends AbstractMethod>> map = new HashMap<>();

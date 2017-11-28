@@ -11,12 +11,10 @@ import javax.servlet.http.HttpServletResponse;
  * @author linuxea
  * @date 2017-11-25
  */
-
 public abstract class AbstractPostMethod extends AbstractMethod<Object> {
 
     /**
      * validate method if post
-     *
      * @param httpServletRequest
      * @param httpServletResponse
      */

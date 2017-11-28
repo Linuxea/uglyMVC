@@ -5,7 +5,6 @@ package com.linuxea.mvc.constant;
  * @author linuxea
  * @date 2017-11-25
  */
-
 public enum MethodTypeEnum {
 
     /**

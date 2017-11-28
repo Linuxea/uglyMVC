@@ -1,6 +1,7 @@
-package com.linuxea.mvc.method;
+package com.linuxea.mvc.method.test;
 
-import com.linuxea.mvc.data.ImageData;
+import com.linuxea.mvc.annotations.data.ImageData;
+import com.linuxea.mvc.method.AbstractGetMethod;
 
 /**
  * @author linuxea

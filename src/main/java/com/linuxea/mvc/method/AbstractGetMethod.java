@@ -12,12 +12,10 @@ import javax.servlet.http.HttpServletResponse;
  * @author linuxea
  * @date 2017-11-25
  */
-
 public abstract class AbstractGetMethod extends AbstractMethod {
 
     /**
      * validate method if get
-     *
      * @param httpServletRequest
      * @param httpServletResponse
      */

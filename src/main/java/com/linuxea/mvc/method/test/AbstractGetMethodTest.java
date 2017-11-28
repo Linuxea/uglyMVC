@@ -1,6 +1,7 @@
-package com.linuxea.mvc.method;
+package com.linuxea.mvc.method.test;
 
-import com.linuxea.mvc.data.JsonData;
+import com.linuxea.mvc.annotations.data.JsonData;
+import com.linuxea.mvc.method.AbstractGetMethod;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,7 +11,6 @@ import java.util.Map;
  * @author linuxea
  * @date 2017-11-25
  */
-
 @JsonData
 public class AbstractGetMethodTest extends AbstractGetMethod {
 

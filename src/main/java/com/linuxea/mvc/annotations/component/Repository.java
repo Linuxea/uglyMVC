@@ -1,4 +1,4 @@
-package com.linuxea.mvc.data;
+package com.linuxea.mvc.annotations.component;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -6,13 +6,13 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * response image
+ * repository component
  *
  * @author linuxea
- * @date 17-11-28
- **/
+ * @date 2017-11-28
+ */
+
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface ImageData {
-
+public @interface Repository {
 }

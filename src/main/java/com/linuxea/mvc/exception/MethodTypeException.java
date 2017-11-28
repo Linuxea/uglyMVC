@@ -5,7 +5,6 @@ package com.linuxea.mvc.exception;
  * @author linuxea
  * @date 2017-11-25
  */
-
 public class MethodTypeException extends BaseException {
 
     public MethodTypeException() {

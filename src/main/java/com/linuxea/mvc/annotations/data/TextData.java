@@ -1,4 +1,4 @@
-package com.linuxea.mvc.data;
+package com.linuxea.mvc.annotations.data;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -6,7 +6,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * response string
+ * response text
  * @author linuxea
  * @date 2017-11-25
  */
