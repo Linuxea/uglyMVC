@@ -7,12 +7,11 @@ import java.lang.annotation.Target;
 
 /**
  * response string
- *
  * @author linuxea
  * @date 2017-11-25
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface StringData {
+public @interface TextData {
 
 }

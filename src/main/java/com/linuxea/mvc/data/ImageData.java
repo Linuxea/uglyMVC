@@ -6,12 +6,13 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * response xml
+ * response image
+ *
  * @author linuxea
- * @date 2017-11-25
- */
+ * @date 17-11-28
+ **/
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface XmlData {
+public @interface ImageData {
 
 }

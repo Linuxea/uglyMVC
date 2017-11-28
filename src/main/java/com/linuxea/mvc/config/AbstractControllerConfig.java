@@ -19,10 +19,6 @@ public abstract class AbstractControllerConfig {
         return map;
     }
 
-    public static void setMap(Map<String, Class<? extends AbstractMethod>> map) {
-        AbstractControllerConfig.map = map;
-    }
-
     protected void add(String url, Class<? extends AbstractMethod> method) {
         map.put(url, method);
     }

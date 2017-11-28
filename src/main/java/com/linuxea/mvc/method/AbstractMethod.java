@@ -1,12 +1,13 @@
 package com.linuxea.mvc.method;
 
-import com.linuxea.mvc.data.JsonData;
-import com.linuxea.mvc.data.StringData;
-import com.linuxea.mvc.data.XmlData;
+import com.alibaba.fastjson.JSON;
+import com.linuxea.mvc.data.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.*;
 import java.lang.annotation.Annotation;
+import java.nio.charset.Charset;
 
 /**
  * abstract method
@@ -15,6 +16,8 @@ import java.lang.annotation.Annotation;
  */
 
 public abstract class AbstractMethod<T> {
+
+    private T t;
 
     /**
      * method type validate
@@ -25,12 +28,9 @@ public abstract class AbstractMethod<T> {
 
     /**
      * subclass service do
-     * must override
-     * @param httpServletRequest
-     * @param httpServletResponse
      * @return
      */
-    public abstract T doIt(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse);
+    public abstract T doIt();
 
     /**
      * method logic
@@ -40,27 +40,79 @@ public abstract class AbstractMethod<T> {
      */
     public final void process(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
         this.validateType(httpServletRequest, httpServletResponse);
-        T t = this.doIt(httpServletRequest, httpServletResponse);
-        System.out.println(this);
+        t = this.doIt();
         // "this" is the abstract method instance
         Annotation[] annotations = this.getClass().getAnnotations();
         boolean skip = true;
         for (int i = 0; i < annotations.length; i++) {
             Annotation annotation = annotations[i];
             if (annotation.annotationType() == JsonData.class) {
-
-            } else if (annotation.annotationType() == StringData.class) {
+                String string = JSON.toJSONString(t);
+                try {
+                    byte[] bytes = string.getBytes(Charset.defaultCharset());
+                    httpServletResponse.setContentType("application/json;charset=UTF-8");
+                    httpServletResponse.setContentLength(bytes.length);
+                    httpServletResponse.getOutputStream().write(bytes);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } else if (annotation.annotationType() == TextData.class) {
+                String string = t.toString();
+                try {
+                    byte[] bytes = string.getBytes(Charset.defaultCharset());
+                    httpServletResponse.setContentType("text/plain;charset=UTF-8");
+                    httpServletResponse.setContentLength(bytes.length);
+                    httpServletResponse.getOutputStream().write(bytes);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
             } else if (annotation.annotationType() == XmlData.class) {
 
+            } else if (annotation.annotationType() == HtmlData.class) {
+                String string = t.toString();
+                try {
+                    byte[] bytes = string.getBytes(Charset.defaultCharset());
+                    httpServletResponse.setContentType("text/html;charset=UTF-8");
+                    httpServletResponse.setContentLength(bytes.length);
+                    httpServletResponse.getOutputStream().write(bytes);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } else if (annotation.annotationType() == ImageData.class) {
+                // accept a path point to image
+                File file = new File(t.toString());
+                byte[] bytes;
+                try {
+                    FileInputStream fileInputStream = new FileInputStream(file);
+                    ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                    byte[] tempByte = new byte[1024];
+                    int flag;
+                    while (-1 != (flag = fileInputStream.read(tempByte))) {
+                        byteArrayOutputStream.write(tempByte, 0, flag);
+                    }
+                    bytes = byteArrayOutputStream.toByteArray();
+                    httpServletResponse.setContentType("image/jpeg");
+                    httpServletResponse.setContentLength(bytes.length);
+                    httpServletResponse.getOutputStream().write(bytes);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             } else {
                 skip = false;
             }
 
+            // has been handled then skip
             if (skip) {
                 break;
             }
         }
+    }
+
+    private void bb() {
+
     }
 
 }

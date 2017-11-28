@@ -2,9 +2,8 @@ package com.linuxea.mvc.method;
 
 import com.linuxea.mvc.data.JsonData;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * demo
@@ -17,19 +16,14 @@ public class AbstractGetMethodTest extends AbstractGetMethod {
 
     /**
      * test demo
-     *
-     * @param httpServletRequest
-     * @param httpServletResponse
-     * @return
      */
     @Override
-    public Object doIt(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
-        try {
-            httpServletResponse.getWriter().write("this is very interesting");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
+    public Object doIt() {
+        Map<String, String> map = new HashMap<>();
+        map.put("name", "linuxea");
+        map.put("age", "12");
+        map.put("sex", "boy");
+        return map;
     }
 
 }
