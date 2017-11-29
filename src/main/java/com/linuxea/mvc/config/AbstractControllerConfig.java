@@ -18,12 +18,18 @@ public abstract class AbstractControllerConfig {
         return map;
     }
 
+    /**
+     * add url mapping
+     *
+     * @param url
+     * @param method
+     */
     protected void add(String url, Class<? extends AbstractMethod> method) {
         map.put(url, method);
     }
 
     /**
-     * url -> mapping add
+     * url -> mapping
      */
     public abstract void connect();
 }

@@ -8,9 +8,10 @@ import com.linuxea.mvc.method.AbstractGetMethod;
  * @date 17-11-28
  **/
 @ImageData
-public class ImageDataTest extends AbstractGetMethod {
+public class ImageDataTest extends AbstractGetMethod<String> {
+
     @Override
-    public Object doIt() {
+    public String doIt() {
         return "/home/linuxea/Desktop/cat.jpg";
     }
 }

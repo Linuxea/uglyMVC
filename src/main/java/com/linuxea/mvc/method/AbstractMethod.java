@@ -37,14 +37,18 @@ public abstract class AbstractMethod<T> {
     public final void process(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
         this.validateType(httpServletRequest, httpServletResponse);
         T t = this.doIt();
+        // has not response data
+        if (null == t) {
+            return;
+        }
         // "this" is the abstract method instance
         Annotation[] annotations = this.getClass().getAnnotations();
         boolean skip = true;
         for (int i = 0; i < annotations.length; i++) {
             Annotation annotation = annotations[i];
             if (annotation.annotationType() == JsonData.class) {
-                String string = JSON.toJSONString(t);
                 try {
+                    String string = JSON.toJSONString(t);
                     byte[] bytes = string.getBytes(Charset.defaultCharset());
                     httpServletResponse.setContentType("application/json;charset=UTF-8");
                     httpServletResponse.setContentLength(bytes.length);
@@ -53,8 +57,8 @@ public abstract class AbstractMethod<T> {
                     e.printStackTrace();
                 }
             } else if (annotation.annotationType() == TextData.class) {
-                String string = t.toString();
                 try {
+                    String string = t.toString();
                     byte[] bytes = string.getBytes(Charset.defaultCharset());
                     httpServletResponse.setContentType("text/plain;charset=UTF-8");
                     httpServletResponse.setContentLength(bytes.length);
@@ -66,8 +70,8 @@ public abstract class AbstractMethod<T> {
             } else if (annotation.annotationType() == XmlData.class) {
 
             } else if (annotation.annotationType() == HtmlData.class) {
-                String string = t.toString();
                 try {
+                    String string = t.toString();
                     byte[] bytes = string.getBytes(Charset.defaultCharset());
                     httpServletResponse.setContentType("text/html;charset=UTF-8");
                     httpServletResponse.setContentLength(bytes.length);
@@ -76,7 +80,7 @@ public abstract class AbstractMethod<T> {
                     e.printStackTrace();
                 }
             } else if (annotation.annotationType() == ImageData.class) {
-                // accept a path point to image
+                // accept a path point to image file
                 File file = new File(t.toString());
                 byte[] bytes;
                 try {

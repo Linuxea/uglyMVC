@@ -12,18 +12,14 @@ import java.util.Map;
  * @date 2017-11-25
  */
 @JsonData
-public class AbstractGetMethodTest extends AbstractGetMethod {
+public class AbstractGetMethodTest extends AbstractGetMethod<Map<String, String>> {
 
-    /**
-     * test demo
-     */
     @Override
-    public Object doIt() {
-        Map<String, String> map = new HashMap<>();
+    public Map<String, String> doIt() {
+        Map<String, String> map = new HashMap<>(5);
         map.put("name", "linuxea");
         map.put("age", "12");
         map.put("sex", "boy");
         return map;
     }
-
 }

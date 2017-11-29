@@ -8,10 +8,10 @@ import com.linuxea.mvc.method.AbstractGetMethod;
  * @date 17-11-28
  **/
 @HtmlData
-public class HtmlMethodTest extends AbstractGetMethod {
+public class HtmlMethodTest extends AbstractGetMethod<String> {
 
     @Override
-    public Object doIt() {
+    public String doIt() {
         return "<html><head>hello</head><title>thisisatile</title><body><p>hello this is from server</p></body></html>";
     }
 }

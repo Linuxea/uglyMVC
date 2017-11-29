@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author linuxea
  * @date 2017-11-25
  */
-public abstract class AbstractDeleteMethod extends AbstractMethod<Object> {
+public abstract class AbstractDeleteMethod<T> extends AbstractMethod<T> {
 
     /**
      * validate method if delete
