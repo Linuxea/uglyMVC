@@ -8,12 +8,12 @@ import javax.servlet.http.HttpServletRequest;
  */
 @FunctionalInterface
 public interface RequestProcess {
-
-    /**
-     * request process
-     *
-     * @param httpServletRequest
-     */
-    void handle(HttpServletRequest httpServletRequest);
+	
+	/**
+	 * request process
+	 *
+	 * @param httpServletRequest
+	 */
+	void handle(HttpServletRequest httpServletRequest);
 
 }

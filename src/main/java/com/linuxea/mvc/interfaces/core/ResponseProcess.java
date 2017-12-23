@@ -8,12 +8,12 @@ import javax.servlet.http.HttpServletResponse;
  */
 @FunctionalInterface
 public interface ResponseProcess {
-
-    /**
-     * response process
-     *
-     * @param httpServletResponse
-     */
-    void handle(HttpServletResponse httpServletResponse);
-
+	
+	/**
+	 * response process
+	 *
+	 * @param httpServletResponse
+	 */
+	void handle(HttpServletResponse httpServletResponse);
+	
 }

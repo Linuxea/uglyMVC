@@ -19,75 +19,76 @@ import java.util.Map;
 
 /**
  * dispatcher servlet
+ *
  * @author linuxea
  * @date 2017-11-25
  **/
 public class DispatcherServlet extends HttpServlet {
-
-    /**
-     * 用来缓存 method 对象的实例
-     */
-    private static final Map<Class, AbstractMethod> MAP = new HashMap<>();
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(DispatcherServlet.class);
-    /**
-     * 对象映射关系的获取
-     */
-    private static final Map<String, Class<? extends AbstractMethod>> CONTROLLER_MAPPING_MAP = AbstractControllerConfig.getMap();
-
-    {
-        dispatcherInit();
-    }
-
-    public DispatcherServlet() {
-        // only init once
-        LOGGER.info("dispatcherServlet init successfully");
-    }
-
-    /**
-     * service dispatcher center
-     *
-     * @param req
-     * @param res
-     * @throws ServletException
-     * @throws IOException
-     */
-    @Override
-    public void service(ServletRequest req, ServletResponse res) throws IOException {
-        HttpServletRequest httpServletRequest = (HttpServletRequest) req;
-        HttpServletResponse httpServletResponse = (HttpServletResponse) res;
-        String uri = httpServletRequest.getRequestURI().toString();
-        AbstractMethod abstractMethod;
-        try {
-            Class<? extends AbstractMethod> inst = CONTROLLER_MAPPING_MAP.get(uri);
-            if (null != inst) {
-                if (null != MAP.get(inst)) {
-                    abstractMethod = MAP.get(inst);
-                } else {
-                    abstractMethod = inst.getDeclaredConstructor().newInstance();
-                    MAP.put(inst, abstractMethod);
-                }
-                abstractMethod.process(httpServletRequest, httpServletResponse);
-            } else {
-                httpServletResponse.getWriter().write("not this url mapping");
-            }
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-        }
-    
-    }
-
-    /**
-     * some thing init
-     */
-    public void dispatcherInit() {
-        new SystemInit().init();
-    }
+	
+	/**
+	 * 用来缓存 method 对象的实例
+	 */
+	private static final Map<Class, AbstractMethod> MAP = new HashMap<>();
+	
+	private static final Logger LOGGER = LoggerFactory.getLogger(DispatcherServlet.class);
+	/**
+	 * 对象映射关系的获取
+	 */
+	private static final Map<String, Class<? extends AbstractMethod>> CONTROLLER_MAPPING_MAP = AbstractControllerConfig.getMap();
+	
+	{
+		dispatcherInit();
+	}
+	
+	public DispatcherServlet() {
+		// only init once
+		LOGGER.info("dispatcherServlet init successfully");
+	}
+	
+	/**
+	 * service dispatcher center
+	 *
+	 * @param req
+	 * @param res
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	@Override
+	public void service(ServletRequest req, ServletResponse res) throws IOException {
+		HttpServletRequest httpServletRequest = (HttpServletRequest) req;
+		HttpServletResponse httpServletResponse = (HttpServletResponse) res;
+		String uri = httpServletRequest.getRequestURI().toString();
+		AbstractMethod abstractMethod;
+		try {
+			Class<? extends AbstractMethod> inst = CONTROLLER_MAPPING_MAP.get(uri);
+			if (null != inst) {
+				if (null != MAP.get(inst)) {
+					abstractMethod = MAP.get(inst);
+				} else {
+					abstractMethod = inst.getDeclaredConstructor().newInstance();
+					MAP.put(inst, abstractMethod);
+				}
+				abstractMethod.process(httpServletRequest, httpServletResponse);
+			} else {
+				httpServletResponse.getWriter().write("not this url mapping");
+			}
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (NoSuchMethodException e) {
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	/**
+	 * some thing init
+	 */
+	public void dispatcherInit() {
+		new SystemInit().init();
+	}
 
 }

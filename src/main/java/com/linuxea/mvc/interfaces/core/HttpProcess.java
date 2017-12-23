@@ -9,13 +9,13 @@ import javax.servlet.http.HttpServletResponse;
  */
 @FunctionalInterface
 public interface HttpProcess {
-
-    /**
-     * request response process
-     *
-     * @param httpServletRequest
-     * @param httpServletResponse
-     */
-    void process(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse);
+	
+	/**
+	 * request response process
+	 *
+	 * @param httpServletRequest
+	 * @param httpServletResponse
+	 */
+	void process(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse);
 
 }

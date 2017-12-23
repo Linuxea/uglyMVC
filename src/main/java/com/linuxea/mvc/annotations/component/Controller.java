@@ -7,6 +7,7 @@ import java.lang.annotation.Target;
 
 /**
  * controller component
+ *
  * @author linuxea
  * @date 2017-11-28
  */

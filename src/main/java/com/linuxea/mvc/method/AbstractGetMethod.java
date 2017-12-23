@@ -9,20 +9,22 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * get method
+ *
  * @author linuxea
  * @date 2017-11-25
  */
 public abstract class AbstractGetMethod<T> extends AbstractMethod<T> {
-
-    /**
-     * validate method if get
-     * @param httpServletRequest
-     * @param httpServletResponse
-     */
-    @Override
-    public final void validateType(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
-        if (httpServletRequest.getMethod().equalsIgnoreCase(MethodTypeEnum.GET.name()) == false) {
-            throw new MethodTypeException("com.linuxea.mvc.method type is not get");
-        }
-    }
+	
+	/**
+	 * validate method if get
+	 *
+	 * @param httpServletRequest
+	 * @param httpServletResponse
+	 */
+	@Override
+	public final void validateType(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
+		if (httpServletRequest.getMethod().equalsIgnoreCase(MethodTypeEnum.GET.name()) == false) {
+			throw new MethodTypeException("com.linuxea.mvc.method type is not get");
+		}
+	}
 }

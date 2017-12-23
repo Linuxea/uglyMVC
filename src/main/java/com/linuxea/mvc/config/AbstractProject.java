@@ -5,9 +5,9 @@ package com.linuxea.mvc.config;
  * @date 2017-11-25
  */
 public abstract class AbstractProject {
-
-    /**
-     * project init
-     */
-    public abstract void init();
+	
+	/**
+	 * project init
+	 */
+	public abstract void init();
 }

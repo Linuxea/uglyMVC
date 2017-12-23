@@ -8,15 +8,15 @@ import org.slf4j.LoggerFactory;
  * @date 2017-11-25
  */
 public class SystemInit extends AbstractProject {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(SystemInit.class);
-
-    /**
-     * all project something init here
-     */
-    @Override
-    public void init() {
-        new ControllerConfig().connect();
-        LOGGER.info("controller 映射成功");
-    }
+	
+	private static final Logger LOGGER = LoggerFactory.getLogger(SystemInit.class);
+	
+	/**
+	 * all project something init here
+	 */
+	@Override
+	public void init() {
+		new ControllerConfig().connect();
+		LOGGER.info("controller 映射成功");
+	}
 }

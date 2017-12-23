@@ -10,15 +10,15 @@ import com.linuxea.mvc.method.test.ImageDataTest;
  * @date 2017-11-25
  */
 public class ControllerConfig extends AbstractControllerConfig {
-
-    /**
-     * url -> controller mapping
-     */
-    @Override
-    public void connect() {
-        super.add("/hello", AbstractGetMethodTest.class);
-        super.add("/hi", GetMethodTest.class);
-        super.add("/bye", HtmlMethodTest.class);
-        super.add("/bibi", ImageDataTest.class);
-    }
+	
+	/**
+	 * url -> controller mapping
+	 */
+	@Override
+	public void connect() {
+		super.add("/hello", AbstractGetMethodTest.class);
+		super.add("/hi", GetMethodTest.class);
+		super.add("/bye", HtmlMethodTest.class);
+		super.add("/bibi", ImageDataTest.class);
+	}
 }
