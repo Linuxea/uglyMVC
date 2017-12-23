@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -52,21 +53,21 @@ public class DispatcherServlet extends HttpServlet {
      * @throws IOException
      */
     @Override
-    public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
+    public void service(ServletRequest req, ServletResponse res) throws IOException {
         HttpServletRequest httpServletRequest = (HttpServletRequest) req;
         HttpServletResponse httpServletResponse = (HttpServletResponse) res;
         String uri = httpServletRequest.getRequestURI().toString();
-        AbstractMethod method;
+        AbstractMethod abstractMethod;
         try {
             Class<? extends AbstractMethod> inst = CONTROLLER_MAPPING_MAP.get(uri);
             if (null != inst) {
                 if (null != MAP.get(inst)) {
-                    method = MAP.get(inst);
+                    abstractMethod = MAP.get(inst);
                 } else {
-                    method = inst.newInstance();
-                    MAP.put(inst, method);
+                    abstractMethod = inst.getDeclaredConstructor().newInstance();
+                    MAP.put(inst, abstractMethod);
                 }
-                method.process(httpServletRequest, httpServletResponse);
+                abstractMethod.process(httpServletRequest, httpServletResponse);
             } else {
                 httpServletResponse.getWriter().write("not this url mapping");
             }
@@ -74,8 +75,12 @@ public class DispatcherServlet extends HttpServlet {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
             e.printStackTrace();
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
         }
-
+    
     }
 
     /**
